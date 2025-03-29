@@ -300,7 +300,7 @@ class DiscreteDistribution(dict):
     ########### QUESTION 5a ###########
     ########### ########### ###########
 
-    def normalize(self):
+    def normalize(self): #A cada particula se le va a dividir entre su total de la suma de las particulas, para que al final la suma de todas las particulas de 1
         """
         Normalize the distribution such that the total value of all keys sums
         to 1. The ratio of values for all keys will remain the same. In the case
@@ -326,7 +326,7 @@ class DiscreteDistribution(dict):
         raiseNotDefined()
         "*** END YOUR CODE HERE ***"
 
-    def sample(self):
+    def sample(self): #Agarra muestra al azar de mis particulas dependiendo de mis probabilidades, utilizando los pesos de las probabilidades
         """
         Draw a random sample from the distribution and return the key, weighted
         by the values associated with each key.
@@ -339,7 +339,7 @@ class DiscreteDistribution(dict):
         >>> N = 100000.0
         >>> samples = [dist.sample() for _ in range(int(N))]
         >>> round(samples.count('a') * 1.0/N, 1)  # proportion of 'a'
-        0.2
+        0.2getObservationProb
         >>> round(samples.count('b') * 1.0/N, 1)
         0.4
         >>> round(samples.count('c') * 1.0/N, 1)
@@ -577,6 +577,7 @@ class ParticleFilter(InferenceModule):
     ########### ########### ###########
 
     def initializeUniformly(self, gameState: busters.GameState):
+        #S -> Sugerencia del profe
         """
         Initialize a list of particles. Use self.numParticles for the number of
         particles. Use self.legalPositions for the legal board positions where
@@ -586,8 +587,15 @@ class ParticleFilter(InferenceModule):
         """
         self.particles = []
         "*** YOUR CODE HERE ***"
+        self.particles.append(self.legalPositions) #S
+        while len(self.particles)<self.numParticles:#S
+            #Elige uno al azar
+            p=random.choice(self.legalPositions)
+            self.particles.append(p)
         raiseNotDefined()
         "*** END YOUR CODE HERE ***"
+
+        #A cada lugar se le asigna una probabilidad, no sabemos donde esta asi que tiene p=1/n, n el numero de particulas
 
     def getBeliefDistribution(self):
         """
@@ -618,7 +626,12 @@ class ParticleFilter(InferenceModule):
         the DiscreteDistribution may be useful.
         """
         "*** YOUR CODE HERE ***"
-        raiseNotDefined()
+        pacmanPos = gameState.getPacmanPosition() #S
+        jailPos = self.getJailPosition() #S
+        creo = self.getBeliefDistribution() #S
+        for p in creo: #S
+            print(p)
+        #raiseNotDefined()
         "*** END YOUR CODE HERE ***"
     
     ########### ########### ###########
@@ -631,6 +644,10 @@ class ParticleFilter(InferenceModule):
         gameState.
         """
         "*** YOUR CODE HERE ***"
+        for p in self.particles:
+            print(p)
+            #self.getPositionDistribution(gameState,p) saber las probabilidades de moverme a una celda en este paso 
+        
         raiseNotDefined()
         "*** END YOUR CODE HERE ***"
 

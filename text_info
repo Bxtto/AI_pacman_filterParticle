@@ -1,0 +1,31 @@
+len(self.legalPostions) #posiciones de las cuales dispone el pacman
+buster.getObservationProbability(observation,6) 
+#getDistribution nos da cuantas particulas hay en cada celda
+
+#clases a modificar
+
+class DiscreteDistribution(dict) #clase a implementar
+    #Las colecciones dan diccionarios
+    def normalize(): #Funcion a implementar
+    #Puede ser que sample tambien
+
+class ParticleFilter(InferenceModule):
+    def initializeUniformly(self, gameState: busters.GameState): #Dadas las posiciones legales, regrese n particulas distribuidas uniformemente
+    def observeUpdate(): #Se relaciona con getObservationProb de la clase InferenceModule, me da lo que observa, me dice cuanto se observa, a tanto siento que esta el fantasma, puedo ver posicion del pacman pacman pos, jail pos y la psosicion del pacman
+        #buster.getPositionDistribution(obvservation, dis_real), 
+    def getBeliefDistribution(): #Esto me da probabilidades como diccionario (pos)-> prob y normaliza
+    
+    def elapseTime() #Simplemente mueve las particulas
+        #getPositionDistribution(gameState, pos) esta es la que nos da a donde se puede mover el fantasma, el que sea no importa
+
+class InferenceModule:
+    def getObservationProb(): #Creo se usa manhattanDistane(pacmanPos.p) para implementar se le manda la distancia observada y la real obs, dis_real y nos da una probabilidad
+
+''''
+'   p es mi particula'
+'   creo[p]*=busters.getObservationProbability(observation,dis_real)'
+'   nos dice la probabilidad para esta particula es tal'
+'   Se hace para cada particula'
+''
+'   Se remuestra cada se asigna nuevo peso'
+'   si se pone -s al final, enseña los fantasmas
